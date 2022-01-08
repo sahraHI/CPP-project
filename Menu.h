@@ -1,10 +1,11 @@
+//Menu class.
 #ifndef TEST_TEST_H
 #define TEST_TEST_H
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#define MAX_NAMBER_OF_ITEMS 4
+#define MAX_NUMBER_OF_ITEMS 4
 using namespace std;
 
 class Menu {
@@ -24,9 +25,7 @@ public:
 private:
     int selectedItemIndex;
     sf::Font font;
-    sf::Text menu[MAX_NAMBER_OF_ITEMS];
+    sf::Text menu[MAX_NUMBER_OF_ITEMS];
 };
 
-
 #endif //TEST_TEST_H
-
