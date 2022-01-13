@@ -24,7 +24,13 @@ public:
 
 private:
     int selectedItemIndex;
+
+    sf::Texture texture;
+
+    sf::Sprite sprite;
+
     sf::Font font;
+
     sf::Text menu[MAX_NUMBER_OF_ITEMS];
 };
 

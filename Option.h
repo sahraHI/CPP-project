@@ -5,7 +5,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#define MAX_NUMBER_OF_OPTIONS 4
+#define MAX_NUMBER_OF_OPTIONS 8
 using namespace std;
 
 class Option {
@@ -20,11 +20,14 @@ public:
 
     void moveDown();
 
-    int getPressedItem() { return selectedOption; }
+    int getPressedOption() { return selectedOption; }
+
 
 private:
     int selectedOption;
+
     sf::Font font;
+
     sf::Text option[MAX_NUMBER_OF_OPTIONS];
 };
 
