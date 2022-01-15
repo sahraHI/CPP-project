@@ -8,4 +8,3 @@ In C++ language.
 ### Create by:
 
 - Zahra Heydari
-- Sarina Naghashi
