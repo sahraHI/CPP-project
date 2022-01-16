@@ -30,6 +30,11 @@ Game::Game() {
     food2.x = (rand() % 40) * SIZE_OF_TEXTURE;
     food2.y = (rand() % 30) * SIZE_OF_TEXTURE;
 
+    while ((food1.x == food2.x) && (food1.y == food2.y)) {
+        food1.x = (rand() % 40) * SIZE_OF_TEXTURE;
+        food1.y = (rand() % 30) * SIZE_OF_TEXTURE;
+    }
+
     //Swt walls location.
     lengthWall1[0] = (rand() % 40) * SIZE_OF_TEXTURE;
     widthWall1[0] = (rand() % 30) * SIZE_OF_TEXTURE;
@@ -39,6 +44,7 @@ Game::Game() {
         widthWall1[i] = widthWall1[0];
     }
 
+    wallLocation:
     lengthWall2[0] = (rand() % 40) * SIZE_OF_TEXTURE;
     widthWall2[0] = (rand() % 30) * SIZE_OF_TEXTURE;
 
@@ -46,6 +52,28 @@ Game::Game() {
         lengthWall2[i] = lengthWall2[0];
         widthWall2[i] = widthWall2[i - 1] + SIZE_OF_TEXTURE;
     }
+
+    for (int i = 0; i < 4; ++i) {
+        while ((lengthWall1[i] == food1.x && widthWall1[i] == food1.y) ||
+               (lengthWall2[i] == food1.x && widthWall2[i] == food1.y)) {
+
+            food1.x = (rand() % 40) * SIZE_OF_TEXTURE;
+            food1.y = (rand() % 30) * SIZE_OF_TEXTURE;
+        }
+        while ((lengthWall1[i] == food2.x && widthWall1[i] == food2.y) ||
+               (lengthWall2[i] == food2.x && widthWall2[i] == food2.y)) {
+
+            food2.x = (rand() % 40) * SIZE_OF_TEXTURE;
+            food2.y = (rand() % 30) * SIZE_OF_TEXTURE;
+        }
+    }
+
+    for (int i = 0; i < 4; ++i) {
+        while ((lengthWall1[i] == lengthWall2[i]) && (widthWall1[i] == widthWall2[i])) {
+            goto wallLocation;
+        }
+    }
+
 }
 
 Game::~Game() {
