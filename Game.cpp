@@ -6,36 +6,30 @@ Game::Game() {
     if (!floorTexture.loadFromFile("1.png")) {
         cout << "Error loading file";
     }
-    floorTexture.setSmooth(true);
     floorSprite.setTexture(floorTexture);
 
     //Load texture for food.
-    if (!foodTexture.loadFromFile("2.png")) {
+    if (!food1Texture.loadFromFile("2.png")) {
         cout << "Error loading file";
     }
-    foodTexture.setSmooth(true);
-    foodSprite.setTexture(foodTexture);
-
-    //Load texture for wall.
-    if (!wallTexture.loadFromFile("3.png")) {
-        cout << "Error loading file";
-    }
-    wallTexture.setSmooth(true);
-    wallSprite.setTexture(wallTexture);
-
-    //Set foods location.
+    food1Sprite.setTexture(food1Texture);
     food1.x = (rand() % 40) * SIZE_OF_TEXTURE;
     food1.y = (rand() % 30) * SIZE_OF_TEXTURE;
+    food1Sprite.setPosition(food1);
 
+    if (!food2Texture.loadFromFile("6.jpg")) {
+        cout << "Error loading file";
+    }
+    food2Sprite.setTexture(food2Texture);
     food2.x = (rand() % 40) * SIZE_OF_TEXTURE;
     food2.y = (rand() % 30) * SIZE_OF_TEXTURE;
+    food2Sprite.setPosition(food2);
 
-    while ((food1.x == food2.x) && (food1.y == food2.y)) {
-        food1.x = (rand() % 40) * SIZE_OF_TEXTURE;
-        food1.y = (rand() % 30) * SIZE_OF_TEXTURE;
+//Load texture for wall.
+    if (!wall1Texture.loadFromFile("3.png")) {
+        cout << "Error loading file";
     }
-
-    //Swt walls location.
+    wall1Sprite.setTexture(wall1Texture);
     lengthWall1[0] = (rand() % 40) * SIZE_OF_TEXTURE;
     widthWall1[0] = (rand() % 30) * SIZE_OF_TEXTURE;
 
@@ -43,49 +37,33 @@ Game::Game() {
         lengthWall1[i] = lengthWall1[i - 1] + SIZE_OF_TEXTURE;
         widthWall1[i] = widthWall1[0];
     }
-
-    wallLocation:
+    if (!wall2Texture.loadFromFile("3.png")) {
+        cout << "Error loading file";
+    }
+    wall2Sprite.setTexture(wall2Texture);
     lengthWall2[0] = (rand() % 40) * SIZE_OF_TEXTURE;
     widthWall2[0] = (rand() % 30) * SIZE_OF_TEXTURE;
 
     for (int i = 0; i < 4; ++i) {
-        lengthWall2[i] = lengthWall2[0];
-        widthWall2[i] = widthWall2[i - 1] + SIZE_OF_TEXTURE;
+        lengthWall2[i] = lengthWall2[i - 1] + SIZE_OF_TEXTURE;
+        widthWall2[i] = widthWall2[0];
     }
-
-    for (int i = 0; i < 4; ++i) {
-        while ((lengthWall1[i] == food1.x && widthWall1[i] == food1.y) ||
-               (lengthWall2[i] == food1.x && widthWall2[i] == food1.y)) {
-
-            food1.x = (rand() % 40) * SIZE_OF_TEXTURE;
-            food1.y = (rand() % 30) * SIZE_OF_TEXTURE;
-        }
-        while ((lengthWall1[i] == food2.x && widthWall1[i] == food2.y) ||
-               (lengthWall2[i] == food2.x && widthWall2[i] == food2.y)) {
-
-            food2.x = (rand() % 40) * SIZE_OF_TEXTURE;
-            food2.y = (rand() % 30) * SIZE_OF_TEXTURE;
-        }
-    }
-
-    for (int i = 0; i < 4; ++i) {
-        while ((lengthWall1[i] == lengthWall2[i]) && (widthWall1[i] == widthWall2[i])) {
-            goto wallLocation;
-        }
-    }
-
 }
 
 Game::~Game() {
 
 }
 
-void Game::updateFood() {
-
+void Game::updateFood1() {
+    food1.x = (rand() % 40) * SIZE_OF_TEXTURE;
+    food1.y = (rand() % 30) * SIZE_OF_TEXTURE;
+    food1Sprite.setPosition(food1);
 }
 
-void Game::update() {
-
+void Game::updateFood2() {
+    food2.x = (rand() % 40) * SIZE_OF_TEXTURE;
+    food2.y = (rand() % 30) * SIZE_OF_TEXTURE;
+    food2Sprite.setPosition(food2);
 }
 
 //To draw game page.
@@ -100,21 +78,17 @@ void Game::draw(sf::RenderWindow &window) {
     }
 
     //Draw foods.
-    foodSprite.setPosition(food1);
-    window.draw(foodSprite);
-
-    foodSprite.setPosition(food2);
-    window.draw(foodSprite);
+    window.draw(food1Sprite);
+    window.draw(food2Sprite);
 
     //Draw walls.
     for (int i = 0; i < 4; ++i) {
-        wallSprite.setPosition(lengthWall1[i], widthWall1[i]);
-        window.draw(wallSprite);
+        wall1Sprite.setPosition(lengthWall1[i], widthWall1[i]);
+        window.draw(wall1Sprite);
     }
 
     for (int i = 0; i < 4; ++i) {
-        wallSprite.setPosition(lengthWall2[i], widthWall2[i]);
-        window.draw(wallSprite);
+        wall2Sprite.setPosition(lengthWall2[i], widthWall2[i]);
+        window.draw(wall2Sprite);
     }
-
 }

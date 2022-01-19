@@ -16,19 +16,19 @@ public:
 
     ~Game();
 
+    void updateFood1();
+
+    void updateFood2();
+
     void draw(sf::RenderWindow &window);
 
-    void updateFood();
+    sf::Sprite floorSprite, food1Sprite,food2Sprite, wall1Sprite,wall2Sprite;
 
-    void update();
+private:
+    sf::Texture floorTexture, food1Texture,food2Texture, wall1Texture,wall2Texture;
 
-protected:
-    sf::Texture floorTexture, foodTexture, wallTexture;
-
-    sf::Sprite floorSprite, foodSprite, wallSprite;
-
-    sf::Vector2<float> food1;
-    sf::Vector2<float> food2;
+    sf::Vector2f food1;
+    sf::Vector2f food2;
 
     array<float, 4> lengthWall1;
     array<float, 4> widthWall1;
