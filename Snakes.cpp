@@ -20,6 +20,7 @@ Snakes::Snakes() : body1(std::list<sf::Sprite>(4)), body2(std::list<sf::Sprite>(
         x += 20.f;
     }
 
+
     if (!body2Texture.loadFromFile("5.png")) {
         cout << "Error loading file";
     }
@@ -60,6 +61,27 @@ Snakes::Snakes() : body1(std::list<sf::Sprite>(4)), body2(std::list<sf::Sprite>(
         piece2.setPosition({c, d});
         d += 20.f;
     }
+
+    score1 = 0;
+    score2 = 0;
+
+    if (!font.loadFromFile("calibri.ttf")) {
+        cout << "Error loading file" << endl;
+        system("pause");
+    }
+
+    //Change  Welcome text features.
+    score[0].setFont(font);
+    score[0].setFillColor(sf::Color::Yellow);
+    score[0].setString("Score1: " + to_string(score1));
+    score[0].setCharacterSize(15);
+    score[0].setPosition(sf::Vector2f(730, 0));
+
+
+    score[1].setFont(font);
+    score[1].setFillColor(sf::Color::Cyan);
+    score[1].setString("Score2: " + to_string(score2));
+    score[1].setCharacterSize(15);
 }
 
 Snakes::~Snakes() {
@@ -116,6 +138,9 @@ void Snakes::grow1(const sf::Vector2f &direction) {
 
     head1 = body1.insert(++head1, newPiece);
 
+    score1 += 1;
+    score[0].setString("Score1: " + to_string(score1));
+
 }
 
 void Snakes::grow2(const sf::Vector2f &direction) {
@@ -124,6 +149,9 @@ void Snakes::grow2(const sf::Vector2f &direction) {
     newPiece.setPosition(head2->getPosition() + direction);
 
     head2 = body2.insert(++head2, newPiece);
+
+    score2 += 1;
+    score[1].setString("Score2: " + to_string(score2));
 
 }
 
@@ -203,11 +231,14 @@ bool Snakes::snakeHitWall1() const {
         }
 
     }
+
+
     return flag;
 }
 
 bool Snakes::snakeHitWall2() const {
     bool flag = false;
+
 
     for (auto piece3 = wall2.begin(); piece3 != wall2.end(); ++piece3) {
 
@@ -236,6 +267,7 @@ bool Snakes::snakeHitWall2() const {
 
 void Snakes::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 
+
     for (auto &piece1: body1) {
         target.draw(piece1);
     }
@@ -250,5 +282,9 @@ void Snakes::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 
     for (auto &piece2: wall2) {
         target.draw(piece2);
+    }
+
+    for (int i = 0; i < 2; ++i) {
+        target.draw(score[i]);
     }
 }

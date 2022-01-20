@@ -1,11 +1,8 @@
 #include <list>
 #include <iostream>
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics.hpp>
+
 
 using namespace std;
 
@@ -23,6 +20,12 @@ private:
     std::list<sf::Sprite> wall2;
 
     sf::Texture body1Texture, body2Texture, wall1Texture, wall2Texture;
+
+    int score1, score2;
+
+    sf::Font font;
+
+    sf::Text score[2];
 
 public:
     Snakes();
