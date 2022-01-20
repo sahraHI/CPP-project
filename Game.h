@@ -22,19 +22,13 @@ public:
 
     void draw(sf::RenderWindow &window);
 
-    sf::Sprite floorSprite, food1Sprite,food2Sprite, wall1Sprite,wall2Sprite;
+    sf::Sprite floorSprite, food1Sprite,food2Sprite;
 
 private:
-    sf::Texture floorTexture, food1Texture,food2Texture, wall1Texture,wall2Texture;
+    sf::Texture floorTexture, food1Texture,food2Texture;
 
     sf::Vector2f food1;
     sf::Vector2f food2;
-
-    array<float, 4> lengthWall1;
-    array<float, 4> widthWall1;
-
-    array<float, 4> lengthWall2;
-    array<float, 4> widthWall2;
 
 };
 

@@ -30,7 +30,7 @@ Menu::Menu(float width, float height) {
     menu[1].setFont(font);
     menu[1].setFillColor(sf::Color(0, 150, 255));
     menu[1].setString("Play");
-    menu[0].setStyle(sf::Text::Bold);
+    menu[1].setStyle(sf::Text::Bold);
     menu[1].setCharacterSize(70);
     menu[1].setPosition(sf::Vector2f((width / 2) - 50, ((height / (MAX_NUMBER_OF_ITEMS + 2)) + 18) * 3));
 
@@ -38,7 +38,7 @@ Menu::Menu(float width, float height) {
     menu[2].setFont(font);
     menu[2].setFillColor(sf::Color::Black);
     menu[2].setString("Options");
-    menu[0].setStyle(sf::Text::Bold);
+    menu[2].setStyle(sf::Text::Bold);
     menu[2].setCharacterSize(70);
     menu[2].setPosition(sf::Vector2f((width / 2) - 100, ((height / (MAX_NUMBER_OF_ITEMS + 2)) + 5) * 4));
 
@@ -46,7 +46,7 @@ Menu::Menu(float width, float height) {
     menu[3].setFont(font);
     menu[3].setFillColor(sf::Color::Black);
     menu[3].setString("Exit");
-    menu[0].setStyle(sf::Text::Bold);
+    menu[3].setStyle(sf::Text::Bold);
     menu[3].setCharacterSize(70);
     menu[3].setPosition(sf::Vector2f((width / 2) - 50, height / (MAX_NUMBER_OF_ITEMS + 2) * 5));
 

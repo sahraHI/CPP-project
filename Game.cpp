@@ -25,29 +25,6 @@ Game::Game() {
     food2.y = (rand() % 30) * SIZE_OF_TEXTURE;
     food2Sprite.setPosition(food2);
 
-//Load texture for wall.
-    if (!wall1Texture.loadFromFile("3.png")) {
-        cout << "Error loading file";
-    }
-    wall1Sprite.setTexture(wall1Texture);
-    lengthWall1[0] = (rand() % 40) * SIZE_OF_TEXTURE;
-    widthWall1[0] = (rand() % 30) * SIZE_OF_TEXTURE;
-
-    for (int i = 0; i < 4; ++i) {
-        lengthWall1[i] = lengthWall1[i - 1] + SIZE_OF_TEXTURE;
-        widthWall1[i] = widthWall1[0];
-    }
-    if (!wall2Texture.loadFromFile("3.png")) {
-        cout << "Error loading file";
-    }
-    wall2Sprite.setTexture(wall2Texture);
-    lengthWall2[0] = (rand() % 40) * SIZE_OF_TEXTURE;
-    widthWall2[0] = (rand() % 30) * SIZE_OF_TEXTURE;
-
-    for (int i = 0; i < 4; ++i) {
-        lengthWall2[i] = lengthWall2[i - 1] + SIZE_OF_TEXTURE;
-        widthWall2[i] = widthWall2[0];
-    }
 }
 
 Game::~Game() {
@@ -81,14 +58,4 @@ void Game::draw(sf::RenderWindow &window) {
     window.draw(food1Sprite);
     window.draw(food2Sprite);
 
-    //Draw walls.
-    for (int i = 0; i < 4; ++i) {
-        wall1Sprite.setPosition(lengthWall1[i], widthWall1[i]);
-        window.draw(wall1Sprite);
-    }
-
-    for (int i = 0; i < 4; ++i) {
-        wall2Sprite.setPosition(lengthWall2[i], widthWall2[i]);
-        window.draw(wall2Sprite);
-    }
 }
