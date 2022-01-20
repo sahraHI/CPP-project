@@ -1,5 +1,4 @@
 //Snake Game with SFML
-
 #include "Window.h"
 
 int main() {
