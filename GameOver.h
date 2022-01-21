@@ -1,3 +1,4 @@
+//Game over class
 #ifndef PROJECT1_GAMEOVER_H
 #define PROJECT1_GAMEOVER_H
 
@@ -31,7 +32,6 @@ private:
     sf::Font font;
 
     sf::Text menu[MAX_NUMBER_Of_BUTTON];
-
 };
 
 #endif //PROJECT1_GAMEOVER_H

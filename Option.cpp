@@ -3,9 +3,8 @@
 Option::Option(float width, float height) {
 
     //Load font for option.
-    if (!font.loadFromFile("calibri.ttf")) {
-        cout << "Error loading file" << endl;
-        system("pause");
+    if (!font.loadFromFile("static\\calibri.ttf")) {
+        cout << "Error loading font file" << endl;
     }
 
     //Change  Options text features.

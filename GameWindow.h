@@ -2,9 +2,7 @@
 #define PROJECT1_GAMEWINDOW_H
 
 #include <SFML/Graphics.hpp>
-
 #include <iostream>
-
 #include "Window.h"
 #include "Game.h"
 #include "Snakes.h"
@@ -22,14 +20,14 @@ public:
 
     void draw(sf::RenderWindow &window);
 
-protected:
+private:
     sf::Vector2f snake1Direction;
+
     sf::Vector2f snake2Direction;
+
     sf::Time Time;
 
-private:
     double speed;
-
 };
 
 #endif //PROJECT1_GAMEWINDOW_H

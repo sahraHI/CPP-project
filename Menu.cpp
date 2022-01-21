@@ -3,19 +3,14 @@
 Menu::Menu(float width, float height) {
 
     //Load texture for menu.
-    if (!texture.loadFromFile("0.jpg")) {
-        cout << "Error loading file";
+    if (!texture.loadFromFile("static\\0.jpg")) {
+        cout << "Error loading texture 0 file";
     }
-    texture.setSmooth(true);
-    texture.setRepeated(true);
-
     sprite.setTexture(texture);
-    sprite.setTextureRect(sf::IntRect(0, 0, 800, 600));
 
     //Load font for menu.
-    if (!font.loadFromFile("CURLZ___.TTF")) {
-        cout << "Error loading file" << endl;
-        system("pause");
+    if (!font.loadFromFile("static\\CURLZ___.TTF")) {
+        cout << "Error loading font file" << endl;
     }
 
     //Change  Welcome text features.

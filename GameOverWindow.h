@@ -1,10 +1,9 @@
+//Game over window class
 #ifndef PROJECT1_GAMEOVERWINDOW_H
 #define PROJECT1_GAMEOVERWINDOW_H
 
 #include <SFML/Graphics.hpp>
-
 #include <iostream>
-
 #include "Game.h"
 #include "GameOver.h"
 #include "GameWindow.h"
@@ -18,6 +17,7 @@ public:
     ~GameOverWindow();
 
     void draw(sf::RenderWindow &window);
+
 private:
     double speed;
 };

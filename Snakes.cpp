@@ -1,39 +1,43 @@
 #include "Snakes.h"
 
-Snakes::Snakes() : body1(std::list<sf::Sprite>(4)), body2(std::list<sf::Sprite>(4)), wall1(std::list<sf::Sprite>(4)),
-                   wall2(std::list<sf::Sprite>(4)) {
+Snakes::Snakes() : body1(list<sf::Sprite>(4)), body2(list<sf::Sprite>(4)),
+                   wall1(list<sf::Sprite>(4)), wall2(list<sf::Sprite>(4)) {
 
+    //To set Snakes part.
     head1 = --body1.end();
     tail1 = body1.begin();
 
     head2 = --body2.end();
     tail2 = body2.begin();
 
-    if (!body1Texture.loadFromFile("4.png")) {
-        cout << "Error loading file";
+    //Load texture for snakes.
+    if (!body1Texture.loadFromFile("static\\4.png")) {
+        cout << "Error loading texture 4 file";
     }
     float x = (rand() % 38) * 20;
     float y = (rand() % 28) * 20;
+
     for (auto &piece1: body1) {
         piece1.setTexture(body1Texture);
         piece1.setPosition({x, y});
         x += 20.f;
     }
 
-
-    if (!body2Texture.loadFromFile("5.png")) {
-        cout << "Error loading file";
+    if (!body2Texture.loadFromFile("static\\5.png")) {
+        cout << "Error loading texture 5 file";
     }
     float w = (rand() % 38) * 20;
     float z = (rand() % 28) * 20;
+
     for (auto &piece2: body2) {
         piece2.setTexture(body2Texture);
         piece2.setPosition({w, z});
         z += 20.f;
     }
 
-    if (!wall1Texture.loadFromFile("3.png")) {
-        cout << "Error loading file";
+    //Load texture for walls.
+    if (!wall1Texture.loadFromFile("static\\6.png")) {
+        cout << "Error loading texture 6 file";
     }
     float a = (rand() % 37) * 20;
     float b = (rand() % 30) * 20;
@@ -44,15 +48,15 @@ Snakes::Snakes() : body1(std::list<sf::Sprite>(4)), body2(std::list<sf::Sprite>(
         a += 20.f;
     }
 
-    if (!wall2Texture.loadFromFile("3.png")) {
-        cout << "Error loading file";
+    if (!wall2Texture.loadFromFile("static\\6.png")) {
+        cout << "Error loading texture 6 file";
     }
     float c = (rand() % 40) * 20;
     float d = (rand() % 27) * 20;
 
+    //To check the distance of the walls.
     for (int i = -3; i <= 3; ++i) {
         if (c == a + i) c = (rand() % 40) * 20;
-
         if (d == b + i) d = (rand() % 27) * 20;
     }
 
@@ -62,22 +66,22 @@ Snakes::Snakes() : body1(std::list<sf::Sprite>(4)), body2(std::list<sf::Sprite>(
         d += 20.f;
     }
 
+    //The initial score of snakes.
     score1 = 0;
     score2 = 0;
 
-    if (!font.loadFromFile("calibri.ttf")) {
-        cout << "Error loading file" << endl;
-        system("pause");
+    if (!font.loadFromFile("static\\calibri.ttf")) {
+        cout << "Error loading fon file" << endl;
     }
 
-    //Change  Welcome text features.
+    //Change  Score1 text features.
     score[0].setFont(font);
     score[0].setFillColor(sf::Color::Yellow);
     score[0].setString("Score1: " + to_string(score1));
     score[0].setCharacterSize(15);
     score[0].setPosition(sf::Vector2f(730, 0));
 
-
+    //Change  Score2 text features.
     score[1].setFont(font);
     score[1].setFillColor(sf::Color::Cyan);
     score[1].setString("Score2: " + to_string(score2));
@@ -88,6 +92,7 @@ Snakes::~Snakes() {
 
 }
 
+//To move snake1.
 void Snakes::move1(const sf::Vector2f &direction1) {
     tail1->setPosition(head1->getPosition() + direction1);
     head1 = tail1;
@@ -102,9 +107,9 @@ void Snakes::move1(const sf::Vector2f &direction1) {
     if (T.x == 40 * 20) head1->setPosition(0, T.y);
     if (T.y == -20) head1->setPosition(T.x, 40 * 20);
     if (T.y == 40 * 20) head1->setPosition(T.x, 0);
-
 }
 
+//To move snake1.
 void Snakes::move2(const sf::Vector2f &direction2) {
     tail2->setPosition(head2->getPosition() + direction2);
     head2 = tail2;
@@ -119,18 +124,18 @@ void Snakes::move2(const sf::Vector2f &direction2) {
     if (M.x == 40 * 20) head2->setPosition(0, M.y);
     if (M.y == -20) head2->setPosition(M.x, 30 * 20);
     if (M.y == 30 * 20) head2->setPosition(M.x, 0);
-
 }
+
 
 bool Snakes::isOn1(const sf::Sprite &other) const {
     return other.getGlobalBounds().intersects(head1->getGlobalBounds());
-
 }
 
 bool Snakes::isOn2(const sf::Sprite &other) const {
     return other.getGlobalBounds().intersects(head2->getGlobalBounds());
 }
 
+//To grow snake1.
 void Snakes::grow1(const sf::Vector2f &direction) {
     sf::Sprite newPiece;
     newPiece.setTexture(*(body1.begin()->getTexture()));
@@ -138,11 +143,12 @@ void Snakes::grow1(const sf::Vector2f &direction) {
 
     head1 = body1.insert(++head1, newPiece);
 
+    //To increase snake1 score.
     score1 += 1;
     score[0].setString("Score1: " + to_string(score1));
-
 }
 
+//To grow snake2.
 void Snakes::grow2(const sf::Vector2f &direction) {
     sf::Sprite newPiece;
     newPiece.setTexture(*(body2.begin()->getTexture()));
@@ -150,11 +156,12 @@ void Snakes::grow2(const sf::Vector2f &direction) {
 
     head2 = body2.insert(++head2, newPiece);
 
+    //To increase snake2 score.
     score2 += 1;
     score[1].setString("Score2: " + to_string(score2));
-
 }
 
+//Death by hit himself.
 bool Snakes::isSelfIntersecting() const {
     bool flag = false;
 
@@ -181,6 +188,7 @@ bool Snakes::isSelfIntersecting() const {
     return flag;
 }
 
+//Death by snakes colliding with each other.
 bool Snakes::collisionOfSnakes() const {
     bool flag = false;
 
@@ -207,6 +215,7 @@ bool Snakes::collisionOfSnakes() const {
     return flag;
 }
 
+//Death due to snake1 hitting the wall.
 bool Snakes::snakeHitWall1() const {
     bool flag = false;
 
@@ -232,13 +241,12 @@ bool Snakes::snakeHitWall1() const {
 
     }
 
-
     return flag;
 }
 
+//Death due to snake2 hitting the wall.
 bool Snakes::snakeHitWall2() const {
     bool flag = false;
-
 
     for (auto piece3 = wall2.begin(); piece3 != wall2.end(); ++piece3) {
 
@@ -265,25 +273,30 @@ bool Snakes::snakeHitWall2() const {
     return flag;
 }
 
+//To draw snakes, walls and scores.
 void Snakes::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 
-
+    //Draw snake1
     for (auto &piece1: body1) {
         target.draw(piece1);
     }
 
+    //Draw snake2
     for (auto &piece2: body2) {
         target.draw(piece2);
     }
 
+    //Draw wall1
     for (auto &piece1: wall1) {
         target.draw(piece1);
     }
 
+    //Draw wall2
     for (auto &piece2: wall2) {
         target.draw(piece2);
     }
 
+    //Draw scores
     for (int i = 0; i < 2; ++i) {
         target.draw(score[i]);
     }

@@ -10,7 +10,7 @@ OptionWindow::~OptionWindow() {
 
 double OptionWindow::draw(sf::RenderWindow &window, sf::Music &music) {
 
-    //Create "Option class" for the game options.
+    //Create "Option class" .
     Option option(800, 600);
 
     while (window.isOpen()) {
@@ -19,6 +19,7 @@ double OptionWindow::draw(sf::RenderWindow &window, sf::Music &music) {
             switch (event.type) {
                 case sf::Event::KeyReleased:
                     switch (event.key.code) {
+
                         //To move up in the options.
                         case sf::Keyboard::Up:
                             option.moveUp();
@@ -29,18 +30,23 @@ double OptionWindow::draw(sf::RenderWindow &window, sf::Music &music) {
                             option.moveDown();
                             break;
 
+                            //To close the window.
+                        case sf::Keyboard::Escape:
+                            window.close();
+                            break;
+
                             //To click on options.
                         case sf::Keyboard::Return:
                             switch (option.getPressedOption()) {
 
                                 //Sound setting.
                                 case 1: {
-                                    std::cout << "Mute button has been pressed" << std::endl;
+                                    cout << "Mute button has been pressed" << endl;
                                     music.stop();
                                 }
                                     break;
                                 case 2: {
-                                    std::cout << "Unmute button has been pressed" << std::endl;
+                                    cout << "Unmute button has been pressed" << endl;
                                     music.play();
                                     music.setLoop(true);
                                 }
@@ -48,25 +54,28 @@ double OptionWindow::draw(sf::RenderWindow &window, sf::Music &music) {
 
                                     //Speed setting.
                                 case 3: {
-                                    std::cout << "Fast button has been pressed" << std::endl;
-                                    double speed=0.05;
+                                    cout << "Fast button has been pressed" << endl;
+                                    double speed = 0.05;
                                     return speed;
                                 }
+
                                 case 4: {
-                                    std::cout << "Slow button has been pressed" << std::endl;
-                                    double speed=0.1;
+                                    cout << "Slow button has been pressed" << endl;
+                                    double speed = 0.1;
                                     return speed;
                                 }
 
                                     //Back to menu.
                                 case 5: {
-                                    std::cout << "Back button has been pressed" << std::endl;
+                                    cout << "Back button has been pressed" << endl;
                                     goto Back;
                                 }
                             }
                             break;
                     }
                     break;
+
+                    //To close the window.
                 case sf::Event::Closed:
                     window.close();
                     break;

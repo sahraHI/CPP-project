@@ -2,24 +2,23 @@
 
 PauseGame::PauseGame() {
 
-    if (!font.loadFromFile("calibri.ttf")) {
-        cout << "Error loading file" << endl;
-        system("pause");
+    if (!font.loadFromFile("static\\calibri.ttf")) {
+        cout << "Error loading font file" << endl;
     }
 
-    //Change  Welcome text features.
+    //Change  Pause text features.
     pause.setFont(font);
     pause.setFillColor(sf::Color::White);
     pause.setString("Pause");
     pause.setCharacterSize(50);
-    pause.setPosition(sf::Vector2f((800 / 2)-60, (600 / 2)-50 ));
-
+    pause.setPosition(sf::Vector2f((800 / 2) - 60, (600 / 2) - 50));
 }
 
 PauseGame::~PauseGame() {
 
 }
 
+//To draw Pause
 void PauseGame::drawPaus(sf::RenderWindow &window) {
     while (window.isOpen()) {
         sf::Event event{};
@@ -27,8 +26,15 @@ void PauseGame::drawPaus(sf::RenderWindow &window) {
             switch (event.type) {
                 case sf::Event::KeyReleased:
                     switch (event.key.code) {
+
+                        //To Pause game.
                         case sf::Keyboard::Space:
                             goto unPause;
+
+                            //To close the window.
+                        case sf::Keyboard::Escape:
+                            window.close();
+                            break;
                     }
                     break;
 
@@ -43,7 +49,6 @@ void PauseGame::drawPaus(sf::RenderWindow &window) {
         }
         window.draw(pause);
         window.display();
-
     }
     unPause:;
 }

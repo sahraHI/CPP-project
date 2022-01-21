@@ -3,19 +3,14 @@
 GameOver::GameOver(float width, float height) {
 
     //Load texture for game over page.
-    if (!texture.loadFromFile("8.jpg")) {
-        cout << "Error loading file";
+    if (!texture.loadFromFile("static\\7.jpg")) {
+        cout << "Error loading texture 7 file";
     }
-    texture.setSmooth(true);
-    texture.setRepeated(true);
-
     sprite.setTexture(texture);
-    sprite.setTextureRect(sf::IntRect(0, 0, 800, 600));
 
     //Load font for game over page.
-    if (!font.loadFromFile("ROCC____.TTF")) {
-        cout << "Error loading file" << endl;
-        system("pause");
+    if (!font.loadFromFile("static\\ROCC____.TTF")) {
+        cout << "Error loading font file" << endl;
     }
 
     //Change  Game over text features.
@@ -47,7 +42,7 @@ GameOver::~GameOver() {
 
 }
 
-//To draw menu page.
+//To draw game over page.
 void GameOver::draw(sf::RenderWindow &window) {
     window.draw(sprite);
     for (int i = 0; i < MAX_NUMBER_Of_BUTTON; ++i) {
@@ -55,7 +50,7 @@ void GameOver::draw(sf::RenderWindow &window) {
     }
 }
 
-//To move up in the menu.
+//To move up in the items.
 void GameOver::moveUp() {
     if (selectedButtonIndex - 1 >= 1) {
         menu[selectedButtonIndex].setFillColor(sf::Color(200,30,0));
@@ -64,7 +59,7 @@ void GameOver::moveUp() {
     }
 }
 
-//To move down in the menu.
+//To move down in the items.
 void GameOver::moveDown() {
     if (selectedButtonIndex + 1 < MAX_NUMBER_Of_BUTTON) {
         menu[selectedButtonIndex].setFillColor(sf::Color(200,30,0));

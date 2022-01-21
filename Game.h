@@ -10,7 +10,6 @@
 using namespace std;
 
 class Game {
-
 public:
     Game();
 
@@ -22,14 +21,15 @@ public:
 
     void draw(sf::RenderWindow &window);
 
-    sf::Sprite floorSprite, food1Sprite,food2Sprite;
+    sf::Sprite food1Sprite, food2Sprite;
 
 private:
-    sf::Texture floorTexture, food1Texture,food2Texture;
+    sf::Texture floorTexture, food1Texture, food2Texture;
+
+    sf::Sprite floorSprite;
 
     sf::Vector2f food1;
     sf::Vector2f food2;
-
 };
 
 #endif //PROJECT1_GAME_H

@@ -1,8 +1,10 @@
+//Snake class
+#ifndef PROJECT1_SNAKES_H
+#define PROJECT1_SNAKES_H
+
 #include <list>
 #include <iostream>
-
 #include <SFML/Graphics.hpp>
-
 
 using namespace std;
 
@@ -54,3 +56,5 @@ public:
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };
+
+#endif //PROJECT1_SNAKES_H

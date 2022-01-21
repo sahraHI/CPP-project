@@ -1,9 +1,8 @@
 #include "Window.h"
 
 Window::Window() {
-    srand(time(nullptr));
 
-    double speed = 0.1;
+    double speed = 0.1;   //Default speed
 
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8;
@@ -15,16 +14,16 @@ Window::Window() {
     //Create "Menu class" for the game menu.
     Menu menu(800, 600);
 
-
-    //For play music
+    //Play music
     sf::Music music;
-    if (!music.openFromFile("music.ogg")) {
-        cout << "Error loading file" << endl;
+    if (!music.openFromFile("static\\music.ogg")) {
+        cout << "Error loading music file" << endl;
     }
     music.setVolume(60);
     music.play();
     music.setLoop(true);
 
+    //Crete Option page
     OptionWindow optionWindow;
 
     // run the program as long as the window is open.
@@ -45,34 +44,43 @@ Window::Window() {
                             menu.moveDown();
                             break;
 
+                            //To close the window.
+                        case sf::Keyboard::Escape:
+                            window.close();
+                            break;
+
                             //To click on items.
                         case sf::Keyboard::Return:
 
+                            //Crete Game page.
                             GameWindow gameWindow(speed);
 
                             switch (menu.getPressedItem()) {
+
                                 //Play the game.
                                 case 1: {
-                                    std::cout << "Play button has been pressed" << std::endl;
+                                    cout << "Play button has been pressed" << endl;
 
+                                    //To display the game screen.
                                     gameWindow.draw(window);
-
                                 }
                                     break;
 
                                     //Go to options page.
                                 case 2: {
-                                    std::cout << "Option button has been pressed" << std::endl;
+                                    cout << "Option button has been pressed" << endl;
 
+                                    //To display the option screen.
                                     speed = optionWindow.draw(window, music);
-
-
                                 }
                                     break;
 
                                     //Exit the game.
-                                case 3:
+                                case 3: {
+                                    cout << "Exit button has been pressed" << endl;
+
                                     window.close();
+                                }
                                     break;
                             }
                             break;
@@ -88,10 +96,9 @@ Window::Window() {
                     break;
             }
         }
-        window.clear(sf::Color(70, 0, 70));
+        window.clear();
         menu.draw(window);
         window.display();
-
     }
 }
 

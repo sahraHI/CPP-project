@@ -23,7 +23,6 @@ public:
     int getPressedOption() { return selectedOption; }
 
 private:
-
     int selectedOption;
 
     sf::Font font;
