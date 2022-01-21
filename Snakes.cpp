@@ -11,7 +11,7 @@ Snakes::Snakes() : body1(list<sf::Sprite>(4)), body2(list<sf::Sprite>(4)),
     tail2 = body2.begin();
 
     //Load texture for snakes.
-    if (!body1Texture.loadFromFile("static\\4.png")) {
+    if (!body1Texture.loadFromFile("static\\4.jpg")) {
         cout << "Error loading texture 4 file";
     }
     float x = (rand() % 38) * 20;
@@ -23,7 +23,7 @@ Snakes::Snakes() : body1(list<sf::Sprite>(4)), body2(list<sf::Sprite>(4)),
         x += 20.f;
     }
 
-    if (!body2Texture.loadFromFile("static\\5.png")) {
+    if (!body2Texture.loadFromFile("static\\5.jpg")) {
         cout << "Error loading texture 5 file";
     }
     float w = (rand() % 38) * 20;
