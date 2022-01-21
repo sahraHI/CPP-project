@@ -146,6 +146,13 @@ void Snakes::grow1(const sf::Vector2f &direction) {
     //To increase snake1 score.
     score1 += 1;
     score[0].setString("Score1: " + to_string(score1));
+
+    //Play eating voice.
+    if (!eating.openFromFile("static\\eating.ogg")) {
+        cout << "Error loading music file" << endl;
+    }
+    eating.setVolume(50);
+    eating.play();
 }
 
 //To grow snake2.
@@ -159,6 +166,13 @@ void Snakes::grow2(const sf::Vector2f &direction) {
     //To increase snake2 score.
     score2 += 1;
     score[1].setString("Score2: " + to_string(score2));
+
+    //Play eating voice.
+    if (!eating.openFromFile("static\\eating.ogg")) {
+        cout << "Error loading music file" << endl;
+    }
+    eating.setVolume(200);
+    eating.play();
 }
 
 //Death by hit himself.

@@ -12,6 +12,14 @@ GameWindow::~GameWindow() {
 //To draw Game window page.
 void GameWindow::draw(sf::RenderWindow &window) {
 
+    //Play game over music.
+    sf::Music game_over;
+    if (!game_over.openFromFile("static\\game_over.ogg")) {
+        cout << "Error loading music file" << endl;
+    }
+    game_over.setVolume(200);
+//    game_over.play();
+
     //Create "Game class"
     Game game;
 
@@ -138,14 +146,19 @@ void GameWindow::draw(sf::RenderWindow &window) {
             }
 
             //To game over.
-            if (snakes.isSelfIntersecting())
+            if (snakes.isSelfIntersecting()) {
+                game_over.play();
                 gameOverWindow.draw(window);
-            else if (snakes.collisionOfSnakes())
+            } else if (snakes.collisionOfSnakes()) {
+                game_over.play();
                 gameOverWindow.draw(window);
-            else if (snakes.snakeHitWall1())
+            } else if (snakes.snakeHitWall1()) {
+                game_over.play();
                 gameOverWindow.draw(window);
-            else if (snakes.snakeHitWall2())
+            } else if (snakes.snakeHitWall2()) {
+                game_over.play();
                 gameOverWindow.draw(window);
+            }
 
             Time = sf::Time::Zero;
         }

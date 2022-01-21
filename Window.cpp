@@ -19,7 +19,7 @@ Window::Window() {
     if (!music.openFromFile("static\\music.ogg")) {
         cout << "Error loading music file" << endl;
     }
-    music.setVolume(60);
+    music.setVolume(50);
     music.play();
     music.setLoop(true);
 

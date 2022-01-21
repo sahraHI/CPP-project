@@ -5,11 +5,14 @@
 #include <list>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 using namespace std;
 
 class Snakes : public sf::Drawable {
 private:
+    sf::Music eating;
+
     std::list<sf::Sprite> body1;
     std::list<sf::Sprite>::iterator head1;
     std::list<sf::Sprite>::iterator tail1;
