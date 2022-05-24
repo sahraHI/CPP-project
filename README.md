@@ -1,4 +1,4 @@
-# Snake Game
+# Snake Game for 2 player
 
 ## Description
 
